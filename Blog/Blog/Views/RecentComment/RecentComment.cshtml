@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<Blog.Models.DataBase.Comment>
+<div class="posts-wrap color">
+    <h3>Resent Comment</h3>
+    <ul>
+        @foreach (Blog.Models.DataBase.Comment item in Model.OrderByDescending(p => p.ID).Take(3))
+        {
+            <li>
+                <p class="date"><span></span></p>
+                <p class="post"><a href="@Url.Action("Index", "Home", new { title = item.Post.Title})">@item.Body</a></p>
+            </li>
+        }
+    </ul>
+</div>

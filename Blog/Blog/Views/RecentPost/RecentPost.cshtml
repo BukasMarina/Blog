@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<Blog.Models.DataBase.Post>
+<div class="posts-wrap">
+    <h3>Recent Post</h3>
+    <ul>
+        @foreach (var item in Model.OrderByDescending(p => p.DateCreated.ToString("HH:mm")).Take(3))
+        {
+            <li>
+                <p class="date">@item.DateCreated.ToString("D")</p>
+                <p class="post"><a href="@Url.Action("Index", "Home", new { title = item.Title})">@item.Title</a></p>
+            </li>
+        }
+    </ul>
+</div>
